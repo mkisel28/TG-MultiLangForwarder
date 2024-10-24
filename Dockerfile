@@ -1,4 +1,4 @@
-FROM python:3.10-slim
+FROM python:3.11-slim
 
 # Установка зависимостей
 RUN apt-get update && apt-get install -y \
@@ -8,10 +8,8 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 COPY requirements.txt requirements.txt
-COPY . .
-
-# Устанавливаем зависимости проекта
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Запуск бота
+COPY . .
+
 CMD ["python", "main.py"]
